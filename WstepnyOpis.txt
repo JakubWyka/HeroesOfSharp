@@ -1,0 +1,13 @@
+HeroesOfScharp
+Projekt przygotowywany w ramach Akademi C#
+
+Skład zespołu:
+  -Michał Krakowiak
+  -Jakub Wyka
+  -Kacper Połom
+  
+Cel: Stworzenie prostej gry strategicznej w przeglądarce.
+
+Technologie: C#, asp.net
+
+Podział obowiązków:
