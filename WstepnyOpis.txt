@@ -10,4 +10,7 @@ Cel: Stworzenie prostej gry strategicznej w przeglądarce.
 
 Technologie: C#, asp.net
 
-Podział obowiązków:
+Wstępny podział obowiązków:
+  -Michał Krakowiak: team leader, grafika, gameplay;
+  -Jakub Wyka: Budynki, klasa gracza;
+  -Kacper Połom: Stworki, walka;
