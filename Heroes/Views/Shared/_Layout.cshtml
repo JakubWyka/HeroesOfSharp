@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Heroes</title>
+    <title>@ViewData["Title"]</title>
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -32,10 +32,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Test">Test</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Hero">Hero</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Town">Town</a></li>
                 </ul>
             </div>
         </div>
@@ -44,7 +42,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2017 - Heroes</p>
+            <p>&copy; 2017 - HeroesOfCSharp</p>
         </footer>
     </div>
 

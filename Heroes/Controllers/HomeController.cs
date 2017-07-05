@@ -13,16 +13,16 @@ namespace Heroes.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Town()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Town";
 
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult Hero()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Hero";
 
             return View();
         }
