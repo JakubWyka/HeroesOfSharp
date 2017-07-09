@@ -13,12 +13,24 @@ namespace Heroes.Game
             {
                 return _FileName;
             }
-            set
+        }
+        public String Name
+        {
+            get
             {
-                _FileName = value;
+                return _Name;
+            }
+        }
+        public String Descritpion
+        {
+            get
+            {
+                return _Description;
             }
         }
 
+        protected String _Name;
+        protected String _Description;
         protected String _FileName;
 
     }
