@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HeroesOfSharp
+namespace Heroes.Game
 {
     abstract class Building
     {
