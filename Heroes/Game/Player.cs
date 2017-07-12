@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace HeroesOfSharp
+namespace Heroes.Game
 {
-    class Player
+    public class Player
     {
         String Name;
         Resources goods;

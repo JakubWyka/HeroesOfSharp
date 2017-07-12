@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Heroes.Game
 {
-    class Resources
+    public class Resources
     {
         int wood;
         int clay;//glina
@@ -63,6 +63,13 @@ namespace Heroes.Game
                 gold = max.Gold;
             if (ore > max.Ore)
                 ore = max.Ore;
+        }
+        public void Multiply(int num)
+        {
+            wood = wood*num;
+            clay = clay*num;
+            gold = gold*num;
+            ore = ore*num;
         }
     }
 }

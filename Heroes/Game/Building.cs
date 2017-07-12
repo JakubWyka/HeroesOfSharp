@@ -1,5 +1,4 @@
 ﻿using System;
-using HeroesOfSharp;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Heroes.Game
 {
-    abstract class Building
+    abstract public class Building
     {
         int level;
         int maxlevel;
@@ -39,7 +38,7 @@ namespace Heroes.Game
                     Actualproductivity.Plus(Levelprodbonus);
                     Owner.Goods.Minus(Levelupcost);
                     Capacity.Plus(Capacitylevbonus);
-                    Levelupcost.Plus(new Resources(Level*30, Level * 30, Level * 30, Level * 30));
+                    Levelupcost.Multiply(2);
                 }
                 else
                     throw new IndexOutOfRangeException("Level is already max");
