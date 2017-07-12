@@ -11,12 +11,19 @@ namespace Heroes.Game
     {
         String Name;
         Resources goods;
+        List<Building> city; 
+
         internal Resources Goods { get => goods; set => goods = value; }
+        public List<Building> City { get => city; set => city = value; }
 
         public Player(String n)
         {
             Name = n;
             goods = new Resources(100, 100, 100, 100);
+            City.Add(new Wood(this));
+            City.Add(new Claypit(this));
+            City.Add(new Oremine(this));
+            City.Add(new Townhall(this));
         }
     }
 }
