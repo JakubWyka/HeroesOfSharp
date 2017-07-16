@@ -14,6 +14,7 @@ namespace Heroes.Game
             this.Initiative = 3;
             this.Expense.Gold = 5;
             this.Expense.Wood = 5;
+            this.Population = 0;
         }
     }
 }

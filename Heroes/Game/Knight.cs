@@ -9,10 +9,12 @@ namespace Heroes.Game
     {
         public Knight()
         {
+            
             this.Attack = 3;
             this.Health = 2;
             this.Initiative = 2;
             this.Expense.Gold = 10;
+            this.Population = 0;
         }
     }
 }

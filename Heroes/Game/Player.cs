@@ -11,6 +11,7 @@ namespace Heroes.Game
     {
         String Name;
         Resources goods;
+        Army PlayerArmy;
         List<Building> city; 
 
         internal Resources Goods { get => goods; set => goods = value; }
@@ -19,6 +20,7 @@ namespace Heroes.Game
         public Player(String n)
         {
             Name = n;
+            PlayerArmy = new Army();
             goods = new Resources(100, 100, 100, 100);
             City.Add(new Wood(this));
             City.Add(new Claypit(this));

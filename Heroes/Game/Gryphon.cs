@@ -13,6 +13,7 @@ namespace Heroes.Game
             this.Health = 3;
             this.Initiative = 3;
             this.Expense.Gold = 15;
+            this.Population = 0;
         }
     }
 }
