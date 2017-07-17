@@ -49,13 +49,13 @@ namespace Heroes.Game
             }
         }
 
-        public void Produce()//produkowanie do przechowalni kopalni
+        public virtual void Produce()//produkowanie do przechowalni kopalni
         {
             Actualamount.Plus(Actualproductivity);
             Actualamount.Limit(Capacity);
         }
 
-        public void Getresources()//opróżnienie budynku, przetransferowanie dobra do uzytkownika
+        public virtual void Getresources()//opróżnienie budynku, przetransferowanie dobra do uzytkownika
         {
             Owner.Goods.Plus(Actualamount);
             Actualamount.Zero();

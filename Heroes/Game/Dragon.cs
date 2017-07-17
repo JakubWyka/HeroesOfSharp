@@ -9,7 +9,6 @@ namespace Heroes.Game
     {
         public Dragon()
         {
-           
             this.Attack = 7;
             this.Health = 10;
             this.Initiative = 4;

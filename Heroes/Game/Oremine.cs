@@ -11,12 +11,12 @@ namespace Heroes.Game
         { 
             this.Level = 1;
             this.Maxlevel = 5;
-            this.Levelupcost = new Resources(60,60,60,60);
-            this.Capacity = new Resources(0, 0, 100, 0);
+            this.Levelupcost = new Resources(60,60,60,60,0);
+            this.Capacity = new Resources(0, 0, 100, 0,0);
             this.Actualamount = new Resources();
-            this.Actualproductivity= new Resources(0, 0, 1, 0);
-            this.Levelprodbonus= new Resources(0, 0, 1, 0);
-            this.Capacitylevbonus = new Resources(0, 0, 1, 0);
+            this.Actualproductivity= new Resources(0, 0, 1, 0, 0);
+            this.Levelprodbonus= new Resources(0, 0, 1, 0, 0);
+            this.Capacitylevbonus = new Resources(0, 0, 1, 0, 0);
             this.Owner = own;
         }
 }

@@ -12,13 +12,15 @@ namespace Heroes.Game
         int clay;//glina
         int ore;//ruda
         int gold;
+        int troops;
 
         public int Gold { get => gold; set => gold = value; }
         public int Clay { get => clay; set => clay = value; }
         public int Wood { get => wood; set => wood = value; }
         public int Ore { get => ore; set => ore = value; }
+        public int Troops { get => troops; set => troops = value; }
 
-        public Resources(int w, int c, int o, int g)
+        public Resources(int w, int c, int o, int g, int t)
         {
             wood = w;
             clay = c;
@@ -31,6 +33,7 @@ namespace Heroes.Game
             clay = 0;
             ore = 0;
             gold = 0;
+            Troops = 0;
         }
         public void Minus(Resources re)
         {
@@ -38,13 +41,15 @@ namespace Heroes.Game
             clay -= re.Clay;
             gold -= re.Gold;
             ore -= re.Ore;
+            Troops -= re.Troops;
         }
         public void Plus(Resources re)
         {
-            wood -= re.Wood;
-            clay -= re.Clay;
-            gold -= re.Gold;
-            ore -= re.Ore;
+            wood += re.Wood;
+            clay += re.Clay;
+            gold += re.Gold;
+            ore += re.Ore;
+            Troops += re.Troops;
         }
         public void Zero()
         {
@@ -52,6 +57,7 @@ namespace Heroes.Game
             clay = 0;
             gold = 0;
             ore = 0;
+            troops = 0;
         }
         public void Limit(Resources max)
         {
@@ -63,6 +69,8 @@ namespace Heroes.Game
                 gold = max.Gold;
             if (ore > max.Ore)
                 ore = max.Ore;
+            if (troops > max.Troops)
+                troops = max.Troops;
         }
         public void Multiply(int num)
         {
@@ -70,6 +78,7 @@ namespace Heroes.Game
             clay = clay*num;
             gold = gold*num;
             ore = ore*num;
+            troops = troops * num;
         }
     }
 }
