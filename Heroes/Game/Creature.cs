@@ -32,9 +32,11 @@ namespace Heroes.Game
                 Population = Population + add;
             }
         }
-        public void Kill(int howMuch)
+        public void Kill(double howMuch)
         {
-            Population = Population - howMuch;
+            
+          
+            Population = Population -(int)howMuch-1;
             if (Population < 0)
             {
                 Population = 0;
