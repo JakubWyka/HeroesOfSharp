@@ -23,10 +23,11 @@ namespace Heroes.Game
             Name = n;
             PlayerArmy = new Army();
             goods = new Resources(100, 100, 100, 100, 0);
-       //     City.Add(new Wood(this));
-         //   City.Add(new Claypit(this));
-           // City.Add(new Oremine(this));
-            //City.Add(new Townhall(this));
+            City.ToList();
+            City.Add(new Wood(this));
+            City.Add(new Claypit(this));
+            City.Add(new Oremine(this));
+            City.Add(new Townhall(this));
         }
         public void Fight(Player player2 , string type)// typ zwraca stworka jaki bedzie atakowany
         {
