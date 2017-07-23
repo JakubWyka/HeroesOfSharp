@@ -7,7 +7,7 @@ namespace Heroes.Game
 {
     public class Knight : Creature
     {
-        public Knight() : base("Knight", "TODO", "Knight.jpg")
+        public Knight() : base("Knight", "TODO", "Knight.png")
         {
             
             this.Attack = 3;

@@ -8,7 +8,7 @@ namespace Heroes.Game
 {
     public class Townhall : Building
     {
-        public Townhall(Player own) : base("Townhall", "TODO", "Townhall.jpg")
+        public Townhall(Player own) : base("Townhall", "TODO", "Townhall.png")
         {
             this.Level = 1;
             this.Maxlevel = 5;

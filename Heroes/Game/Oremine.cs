@@ -7,7 +7,7 @@ namespace Heroes.Game
 {
     public class Oremine : Building
     {
-        public Oremine(Player own) : base("Oremine", "TODO", "Oremine.jpg")
+        public Oremine(Player own) : base("Oremine", "TODO", "Oremine.png")
         { 
             this.Level = 1;
             this.Maxlevel = 5;
