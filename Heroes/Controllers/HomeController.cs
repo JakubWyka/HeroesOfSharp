@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Session;
+using Heroes.Game;
 
 namespace Heroes.Controllers
 {
+    
     public class HomeController : Controller
     {
+        private Dictionary<String, Player> Players = new Dictionary<String, Player>(); 
         [NonAction]
         public void StartFight(List<Game.Player> players , string type)
         {
@@ -15,9 +19,6 @@ namespace Heroes.Controllers
             Game.Player P2 = players[1];
             P1.Fight(P2 , type);
         }
-
-
-
 
         public IActionResult Fight()
         {
@@ -136,8 +137,15 @@ namespace Heroes.Controllers
         {
             return View();
         }
-        public IActionResult Test()
+        [HttpPost]
+        public IActionResult AddPlayer(string Name)
         {
+            if (!TempData.ContainsKey("Player"))
+            {
+                TempData.Add("Player", Name);
+                TempData.Keep("Player");
+                Players.Add(Name, new Player(Name));
+            }
             return View();
         }
     }
