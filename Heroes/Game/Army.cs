@@ -11,26 +11,26 @@ namespace Heroes.Game
         Creature gryphons;
         Creature archers;
         Creature knights;
-        Creature[] conteiner;
+        Creature[] container;
 
         public Creature Dragons { get => dragons; set => dragons = value; }
         public Creature Gryphons { get => gryphons; set => gryphons = value; }
         public Creature Archers { get => archers; set => archers = value; }
         public Creature Knights { get => knights; set => knights = value; }
-        public Creature[] Conteiner { get => conteiner; set => conteiner = value; }
+        public Creature[] Container { get => container; set => container = value; }
 
 
         public Army()
         {
-            conteiner = new Creature[4];
+            container = new Creature[4];
               dragons = new Dragon();
             gryphons = new Gryphon();
             archers = new Archer();
             knights = new Knight();
-            Conteiner[0] = dragons;
-            Conteiner[1] = gryphons;
-            Conteiner[2] = archers;
-            Conteiner[3] = knights;
+            Container[0] = dragons;
+            Container[1] = gryphons;
+            Container[2] = archers;
+            Container[3] = knights;
         }
     }
 }

@@ -43,10 +43,10 @@ namespace Heroes.Game
 
             for (int a = 0; a < 4; a++)// znalezienie stworka
             {
-                if (playerArmy.Conteiner[a].Initiative == maxIni && playerArmy.Conteiner[a].Population!=0 )
+                if (playerArmy.Container[a].Initiative == maxIni && playerArmy.Container[a].Population!=0 )
                 {
-                    double damage = playerArmy.Conteiner[a].Attack;// * 0.2
-                    playerArmy.Conteiner[a].Initiative = -playerArmy.Conteiner[a].Initiative; //ustawienie ini na wartosc ujemna ( jednostka juz zatakowala)
+                    double damage = playerArmy.Container[a].Attack;// * 0.2
+                    playerArmy.Container[a].Initiative = -playerArmy.Container[a].Initiative; //ustawienie ini na wartosc ujemna ( jednostka juz zatakowala)
                     double howMuch;
 
                     switch (type)
@@ -73,11 +73,11 @@ namespace Heroes.Game
                     }
 
                 }
-                else if(player2.playerArmy.Conteiner[a].Initiative == maxIni && player2.playerArmy.Conteiner[a].Population != 0 )
+                else if(player2.playerArmy.Container[a].Initiative == maxIni && player2.playerArmy.Container[a].Population != 0 )
                 {
-                    double damage = player2.playerArmy.Conteiner[a].Attack;
+                    double damage = player2.playerArmy.Container[a].Attack;
                     double howMuch;
-                    player2.playerArmy.Conteiner[a].Initiative = -player2.playerArmy.Conteiner[a].Initiative; //ustawienie ini na wartosc ujemna ( jednostka juz zatakowala)
+                    player2.playerArmy.Container[a].Initiative = -player2.playerArmy.Container[a].Initiative; //ustawienie ini na wartosc ujemna ( jednostka juz zatakowala)
 
                     switch (type)
                     {
@@ -116,19 +116,19 @@ namespace Heroes.Game
             int maxiniplayer2 = 0;
             for (int a = 0; a < 4; a++)// znalezienie max ini
             {
-                if (playerArmy.Conteiner[a].Population > 0)
+                if (playerArmy.Container[a].Population > 0)
                 {
-                    if(maxiniplayer1 < PlayerArmy.Conteiner[a].Initiative)
+                    if(maxiniplayer1 < PlayerArmy.Container[a].Initiative)
                     {
-                        maxiniplayer1 = playerArmy.Conteiner[a].Initiative;
+                        maxiniplayer1 = playerArmy.Container[a].Initiative;
                     }
                 }
 
-                if (player2.playerArmy.Conteiner[a].Population > 0)
+                if (player2.playerArmy.Container[a].Population > 0)
                 {
-                    if (maxiniplayer2 < player2.PlayerArmy.Conteiner[a].Initiative)
+                    if (maxiniplayer2 < player2.PlayerArmy.Container[a].Initiative)
                     {
-                        maxiniplayer2 = player2.playerArmy.Conteiner[a].Initiative;
+                        maxiniplayer2 = player2.playerArmy.Container[a].Initiative;
                     }
                 }
             }
@@ -148,8 +148,8 @@ namespace Heroes.Game
         {
             for (int a = 0; a < 4; a++)
             {
-                playerArmy.Conteiner[a].Initiative = Math.Abs(playerArmy.Conteiner[a].Initiative);
-                player2.playerArmy.Conteiner[a].Initiative = Math.Abs(player2.playerArmy.Conteiner[a].Initiative);
+                playerArmy.Container[a].Initiative = Math.Abs(playerArmy.Container[a].Initiative);
+                player2.playerArmy.Container[a].Initiative = Math.Abs(player2.playerArmy.Container[a].Initiative);
             }
         }
     }
