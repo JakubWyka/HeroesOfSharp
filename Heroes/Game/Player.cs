@@ -21,6 +21,7 @@ namespace Heroes.Game
         public Player(String n)
         {
             Name = n;
+            city = new List<Building>();
             PlayerArmy = new Army();
             goods = new Resources(100, 100, 100, 100, 0);
             City.ToList();
