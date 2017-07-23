@@ -7,6 +7,12 @@ namespace Heroes.Game
 {
     public abstract class GameObject
     {
+        public GameObject(String Name, String Description, String FileName)
+        {
+            _Name = Name;
+            _FileName = FileName;
+            _Description = Description;
+        }
         public String FileName
         {
             get

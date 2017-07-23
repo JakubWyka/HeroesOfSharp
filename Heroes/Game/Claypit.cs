@@ -7,7 +7,7 @@ namespace Heroes.Game
 {
     public class Claypit : Building
     {
-        public Claypit(Player own)
+        public Claypit(Player own) : base("Claypit", "TODO", "Claypit.jpg")
         { 
             this.Level = 1;
             this.Maxlevel = 5;

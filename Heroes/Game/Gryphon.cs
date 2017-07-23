@@ -7,7 +7,7 @@ namespace Heroes.Game
 {
     public class Gryphon : Creature
     {
-        public Gryphon()
+        public Gryphon() : base("Gryphon", "TODO", "Gryphon.jpg")
         {
             this.Attack = 4;
             this.Health = 3;

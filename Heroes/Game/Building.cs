@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Heroes.Game
 {
-    abstract public class Building
+    abstract public class Building : GameObject
     {
         int level;
         int maxlevel;
@@ -27,6 +27,10 @@ namespace Heroes.Game
         internal Resources Levelupcost { get => levelupcost; set => levelupcost = value; }
         internal Player Owner { get => owner; set => owner = value; }
         internal Resources Capacitylevbonus { get => capacitylevbonus; set => capacitylevbonus = value; }
+
+        public Building(String Name, String Description, String FileName) : base(Name, Description, FileName)
+        {
+        }
 
         public void Levelup()
         {

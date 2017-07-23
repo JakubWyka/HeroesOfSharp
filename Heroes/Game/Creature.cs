@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Heroes.Game
 {
-    abstract public class Creature
+    abstract public class Creature : GameObject
     {
         int attack;
         int initiative;
@@ -20,7 +20,7 @@ namespace Heroes.Game
         public Resources Expense { get => expense;  set => expense = value; } //dodac protected w set
 
 
-        public Creature()
+        public Creature(String Name, String Description, String FileName) : base(Name, Description, FileName)
         {
             expense = new Resources();
         }

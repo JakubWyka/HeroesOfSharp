@@ -7,7 +7,7 @@ namespace Heroes.Game
 {
     public class Dragon : Creature
     {
-        public Dragon()
+        public Dragon() : base("Dragon", "TODO", "Dragon.jpg")
         {
            
             this.Attack = 7;

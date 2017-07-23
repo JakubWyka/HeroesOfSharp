@@ -7,7 +7,7 @@ namespace Heroes.Game
 {
     public class Wood : Building
     {
-        public Wood(Player own)
+        public Wood(Player own) : base("Wood", "TODO", "Wood.jpg")
         { 
             this.Level = 1;
             this.Maxlevel = 5;

@@ -112,7 +112,6 @@ namespace Heroes.Controllers
 
         public IActionResult Index()
         {
-            //return Fight();
               return View();
         }
 
