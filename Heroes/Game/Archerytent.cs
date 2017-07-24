@@ -7,7 +7,7 @@ namespace Heroes.Game
 {
     public class Archerytent : Building
     {
-        public Archerytent(Player own) : base("Archerytent", "TODO", "Archerytent")
+        public Archerytent(Player own) : base("Archerytent", "TODO", "Archerytent.jpg")
         {
             this.Level = 1;
             this.Maxlevel = 1;         

@@ -6,12 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Session;
 using Heroes.Game;
 
+
 namespace Heroes.Controllers
 {
-    
+     
     public class HomeController : Controller
     {
-        private Dictionary<String, Player> Players = new Dictionary<String, Player>(); 
+        static Dictionary<String, Player> Players = new Dictionary<String, Player>();
         [NonAction]
         public void StartFight(List<Game.Player> players , string type)
         {
@@ -115,14 +116,11 @@ namespace Heroes.Controllers
               return View();
         }
 
-
-
-
         public IActionResult Town()
         {
-            ViewData["Message"] = "Town";
-
-            return View();
+            Player p = Players[TempData.Peek("Player").ToString()];
+            var buildings = from building in p.City select building;
+            return View(buildings.Select(k => k.Value).ToList());
         }
 
         public IActionResult Hero()
@@ -130,6 +128,20 @@ namespace Heroes.Controllers
             ViewData["Message"] = "Hero";
 
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Build(string submit)
+        {
+            try
+            {
+                Players[TempData.Peek("Player").ToString()].City[submit].Levelup();
+            }
+            catch (Exception e)
+            {
+            }
+
+            return RedirectToAction("Town");
         }
 
         public IActionResult Error()
@@ -142,7 +154,6 @@ namespace Heroes.Controllers
             if (!TempData.ContainsKey("Player"))
             {
                 TempData.Add("Player", Name);
-                TempData.Keep("Player");
                 Players.Add(Name, new Player(Name));
             }
             return View();

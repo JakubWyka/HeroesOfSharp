@@ -1,5 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Hero";
 }
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <img src="~/images/hero.jpg" class="col-md-6" style="width: 213px; height:304px"/>
+    <h3 class="col-md-6">@TempData.Peek("Player").ToString()</h3>
+</div>

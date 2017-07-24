@@ -12,23 +12,23 @@ namespace Heroes.Game
         String Name;
         Resources goods;
         Army playerArmy;
-        List<Building> city;
+        Dictionary<String, Building> city;
 
         internal Resources Goods { get => goods; set => goods = value; }
-        public List<Building> City { get => city; set => city = value; }
+        public Dictionary<String, Building> City { get => city; set => city = value; }
         public Army PlayerArmy { get => playerArmy; set => playerArmy = value; }
 
         public Player(String n)
         {
             Name = n;
-            city = new List<Building>();
+            city = new Dictionary<String, Building>();
             PlayerArmy = new Army();
             goods = new Resources(100, 100, 100, 100, 0);
-            City.ToList();
-            City.Add(new Wood(this));
-            City.Add(new Claypit(this));
-            City.Add(new Oremine(this));
-            City.Add(new Townhall(this));
+            //City.ToList();
+            City.Add("Wood", new Wood(this));
+            City.Add("Claypit", new Claypit(this));
+            City.Add("Oremine", new Oremine(this));
+            City.Add("Townhall", new Townhall(this));
         }
         public void Fight(Player player2 , string type)// typ zwraca stworka jaki bedzie atakowany
         {

@@ -1,5 +1,37 @@
-﻿@{
+﻿@model IEnumerable<Heroes.Game.Building>
+
+
+@{
     ViewData["Title"] = "Town";
 }
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
+
+<h2>@ViewData["Title"]</h2>
+
+@using (Html.BeginForm("Build", "Home", FormMethod.Post))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Level</th>
+                <th>Build</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var b in Model)
+                {
+                    <tr>
+                        <td><img src=@("/images/" + b.FileName) style="width: 150px; height: 150px" /></td>
+                        <td>@b.Name</td>
+                        <td>@b.Level</td>
+                        <td><button name="submit" type="submit" class="btn btn-default" value=@b.Name>Build</button></td>
+                    </tr>
+
+                }
+            }
+        </tbody>
+    </table>
+}
+<p>@ViewData["Message"]</p>

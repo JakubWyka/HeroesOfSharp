@@ -7,7 +7,7 @@ namespace Heroes.Game
 {
     public class Dragonshatchery : Building
     {
-        public Dragonshatchery(Player own) : base("Dragonshatchery", "TODO", "Dragonshatchery.jpg")
+        public Dragonshatchery(Player own) : base("Dragonshatchery", "TODO", "Dragonshatchery.png")
         {
             this.Level = 1;
             this.Maxlevel = 1;
