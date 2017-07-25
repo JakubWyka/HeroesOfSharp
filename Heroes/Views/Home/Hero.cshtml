@@ -1,8 +1,32 @@
-﻿@{
-    ViewData["Title"] = "Hero";
-}
-<h2>@ViewData["Title"]</h2>
+﻿@model IEnumerable<Heroes.Game.Creature>
+<h2>@TempData.Peek("Player").ToString()</h2>
 <div class="row">
-    <img src="~/images/hero.jpg" class="col-md-6" style="width: 213px; height:304px"/>
-    <h3 class="col-md-6">@TempData.Peek("Player").ToString()</h3>
+    <img src="~/images/hero.jpg" class="col-md-6" style="width: 213px; height:304px" />
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Population</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var c in Model)
+                    {
+                        if (c.Population > 0)
+                        {
+                            <tr>
+                                <td><img src=@("/images/" + c.FileName) style="width: 150px; height: 150px" /></td>
+                                <td>@c.Name</td>
+                                <td>@c.Population</td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+
+        </table>
+    </div>
 </div>

@@ -120,14 +120,18 @@ namespace Heroes.Controllers
         {
             Player p = Players[TempData.Peek("Player").ToString()];
             var buildings = from building in p.City select building;
+            ViewData["Ore"] = p.Goods.Ore;
+            ViewData["Gold"] = p.Goods.Gold;
+            ViewData["Clay"] = p.Goods.Clay;
+            ViewData["Wood"] = p.Goods.Wood;
             return View(buildings.Select(k => k.Value).ToList());
         }
 
         public IActionResult Hero()
         {
-            ViewData["Message"] = "Hero";
-
-            return View();
+            Player p = Players[TempData.Peek("Player").ToString()];
+            var army = p.PlayerArmy.Container;
+            return View(army.ToList<Creature>());
         }
 
         [HttpPost]
@@ -137,7 +141,7 @@ namespace Heroes.Controllers
             {
                 Players[TempData.Peek("Player").ToString()].City[submit].Levelup();
             }
-            catch (IndexOutOfRangeException e)
+            catch (Exception e)
             {
                 TempData.Add("Message", e.Message);
             }

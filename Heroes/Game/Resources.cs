@@ -37,6 +37,12 @@ namespace Heroes.Game
         }
         public void Minus(Resources re)
         {
+            if (re.Wood > wood || re.Clay > clay || re.gold > gold || re.Ore > ore)
+                throw new Exception("Not enough recources");
+            else
+            {
+
+            }
             wood -= re.Wood;
             clay -= re.Clay;
             gold -= re.Gold;

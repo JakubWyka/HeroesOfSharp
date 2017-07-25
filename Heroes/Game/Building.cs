@@ -24,7 +24,7 @@ namespace Heroes.Game
         internal Resources Actualamount { get => actualamount; set => actualamount = value; }
         internal Resources Actualproductivity { get => actualproductivity; set => actualproductivity = value; }
         internal Resources Levelprodbonus { get => levelprodbonus; set => levelprodbonus = value; }
-        internal Resources Levelupcost { get => levelupcost; set => levelupcost = value; }
+        public Resources Levelupcost { get => levelupcost; set => levelupcost = value; }
         internal Player Owner { get => owner; set => owner = value; }
         internal Resources Capacitylevbonus { get => capacitylevbonus; set => capacitylevbonus = value; }
 
@@ -34,16 +34,23 @@ namespace Heroes.Game
 
         public void Levelup()
         {
-            if (this.Level < Maxlevel)
+            try
             {
-                this.Level++;
-                Actualproductivity.Plus(Levelprodbonus);
-                Owner.Goods.Minus(Levelupcost);
-                Capacity.Plus(Capacitylevbonus);
-                Levelupcost.Multiply(2);
+                if (this.Level < Maxlevel)
+                {
+                    Owner.Goods.Minus(Levelupcost);
+                    this.Level++;
+                    Actualproductivity.Plus(Levelprodbonus);
+                    Capacity.Plus(Capacitylevbonus);
+                    Levelupcost.Multiply(2);
+                }
+                else
+                    throw new IndexOutOfRangeException("Level is already max");
             }
-            else
-                throw new IndexOutOfRangeException("Level is already max");
+            catch
+            {
+                throw;
+            }
         }
 
         public virtual void Produce()//produkowanie do przechowalni kopalni

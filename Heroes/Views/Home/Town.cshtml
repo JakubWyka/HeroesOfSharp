@@ -12,6 +12,18 @@
         <p>@TempData["Message"]</p>
     }
 }
+
+<div class="row well">
+    <img src="~/images/Gold.jpeg" style="width: 30px; height: 30px;" />
+    <span>@ViewData["Gold"] </span>
+    <img src="~/images/Ore.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
+    <span>@ViewData["Ore"] </span>
+    <img src="~/images/Wood.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
+    <span>@ViewData["Wood"] </span>
+    <img src="~/images/Clay.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
+    <span>@ViewData["Clay"]</span>
+</div>
+
 @using (Html.BeginForm("Build", "Home", FormMethod.Post))
 {
     <table class="table">
@@ -20,6 +32,7 @@
                 <th>Image</th>
                 <th>Name</th>
                 <th>Level</th>
+                <th>Cost</th>
                 <th>Build</th>
             </tr>
         </thead>
@@ -31,6 +44,34 @@
                         <td><img src=@("/images/" + b.FileName) style="width: 150px; height: 150px" /></td>
                         <td>@b.Name</td>
                         <td>@b.Level</td>
+                        @{
+                            if (b.Level != b.Maxlevel && b.Levelupcost != null)
+                            {
+                                <td>
+                                    <img src="~/images/Gold.jpeg" style="width: 30px; height: 30px;" />
+                                    <span>@b.Levelupcost.Gold </span>
+                                    <img src="~/images/Ore.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
+                                    <span>@b.Levelupcost.Ore </span>
+                                    <img src="~/images/Wood.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
+                                    <span>@b.Levelupcost.Wood </span>
+                                    <img src="~/images/Clay.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
+                                    <span>@b.Levelupcost.Clay </span>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <img src="~/images/Gold.jpeg" style="width: 30px; height: 30px;" />
+                                    <span>- </span>
+                                    <img src="~/images/Ore.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
+                                    <span>- </span>
+                                    <img src="~/images/Wood.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
+                                    <span>- </span>
+                                    <img src="~/images/Clay.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
+                                    <span>- </span>
+                                </td>
+                            }
+                        }
                         <td>
                             <button name="submit" type="submit" class="btn btn-default" value=@b.Name>
                                 @{if (b.Level > 0)
