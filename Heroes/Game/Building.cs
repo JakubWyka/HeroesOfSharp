@@ -34,23 +34,16 @@ namespace Heroes.Game
 
         public void Levelup()
         {
-            try
+            if (this.Level < Maxlevel)
             {
-                if (this.Level < Maxlevel)
-                {
-                    this.Level++;
-                    Actualproductivity.Plus(Levelprodbonus);
-                    Owner.Goods.Minus(Levelupcost);
-                    Capacity.Plus(Capacitylevbonus);
-                    Levelupcost.Multiply(2);
-                }
-                else
-                    throw new IndexOutOfRangeException("Level is already max");
+                this.Level++;
+                Actualproductivity.Plus(Levelprodbonus);
+                Owner.Goods.Minus(Levelupcost);
+                Capacity.Plus(Capacitylevbonus);
+                Levelupcost.Multiply(2);
             }
-            catch
-            {
-                // user info
-            }
+            else
+                throw new IndexOutOfRangeException("Level is already max");
         }
 
         public virtual void Produce()//produkowanie do przechowalni kopalni

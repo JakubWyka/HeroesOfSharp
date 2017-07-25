@@ -9,7 +9,7 @@ namespace Heroes.Game
     {
         public Knightbarrack(Player own) : base("Knightbarrack", "TODO", "Knightbarrack.jpg")
         {
-            this.Level = 1;
+            this.Level = 0;
             this.Maxlevel = 1;
             this.Capacity = new Resources(0, 0, 0, 0, 5);
             this.Actualamount = new Resources();

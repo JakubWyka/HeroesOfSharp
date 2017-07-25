@@ -9,7 +9,7 @@ namespace Heroes.Game
     {
         public Archerytent(Player own) : base("Archerytent", "TODO", "Archerytent.jpg")
         {
-            this.Level = 1;
+            this.Level = 0;
             this.Maxlevel = 1;         
             this.Capacity = new Resources(0, 0, 0, 0, 7);
             this.Actualamount = new Resources();

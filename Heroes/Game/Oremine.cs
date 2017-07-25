@@ -19,5 +19,5 @@ namespace Heroes.Game
             this.Capacitylevbonus = new Resources(0, 0, 1, 0, 0);
             this.Owner = own;
         }
-}
+    }
 }

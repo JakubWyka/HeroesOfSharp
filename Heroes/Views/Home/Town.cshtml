@@ -6,7 +6,12 @@
 }
 
 <h2>@ViewData["Title"]</h2>
-
+@{
+    if (TempData.ContainsKey("Message"))
+    {
+        <p>@TempData["Message"]</p>
+    }
+}
 @using (Html.BeginForm("Build", "Home", FormMethod.Post))
 {
     <table class="table">
@@ -26,12 +31,19 @@
                         <td><img src=@("/images/" + b.FileName) style="width: 150px; height: 150px" /></td>
                         <td>@b.Name</td>
                         <td>@b.Level</td>
-                        <td><button name="submit" type="submit" class="btn btn-default" value=@b.Name>Build</button></td>
+                        <td>
+                            <button name="submit" type="submit" class="btn btn-default" value=@b.Name>
+                                @{if (b.Level > 0)
+                                    { <span>Upgrade</span>}
+                                    else
+                                    { <span>Build</span>}
+                                }
+                            </button>
+                        </td>
                     </tr>
 
-                }
+                                    }
             }
         </tbody>
     </table>
-}
-<p>@ViewData["Message"]</p>
+                                    }

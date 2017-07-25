@@ -9,7 +9,7 @@ namespace Heroes.Game
     {
         public Dragonshatchery(Player own) : base("Dragonshatchery", "TODO", "Dragonshatchery.png")
         {
-            this.Level = 1;
+            this.Level = 0;
             this.Maxlevel = 1;
             this.Capacity = new Resources(0, 0, 0, 0, 4);
             this.Actualamount = new Resources();

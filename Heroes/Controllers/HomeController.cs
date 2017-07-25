@@ -137,8 +137,9 @@ namespace Heroes.Controllers
             {
                 Players[TempData.Peek("Player").ToString()].City[submit].Levelup();
             }
-            catch (Exception e)
+            catch (IndexOutOfRangeException e)
             {
+                TempData.Add("Message", e.Message);
             }
 
             return RedirectToAction("Town");

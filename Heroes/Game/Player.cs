@@ -24,11 +24,14 @@ namespace Heroes.Game
             city = new Dictionary<String, Building>();
             PlayerArmy = new Army();
             goods = new Resources(100, 100, 100, 100, 0);
-            //City.ToList();
             City.Add("Wood", new Wood(this));
             City.Add("Claypit", new Claypit(this));
             City.Add("Oremine", new Oremine(this));
             City.Add("Townhall", new Townhall(this));
+            City.Add("Archerytent", new Archerytent(this));
+            City.Add("Dragonshatchery", new Dragonshatchery(this));
+            City.Add("Gryphonshatchery", new Gryphonshatchery(this));
+            City.Add("Knightbarrack", new Knightbarrack(this));
         }
         public void Fight(Player player2 , string type)// typ zwraca stworka jaki bedzie atakowany
         {
