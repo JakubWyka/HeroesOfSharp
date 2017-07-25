@@ -10,7 +10,7 @@ namespace Heroes.Game
     {
         public Townhall(Player own) : base("Townhall", "TODO", "Townhall.png")
         {
-            this.Level = 1;
+            this.Level = 0;
             this.Maxlevel = 5;
             this.Levelupcost = new Resources(30,30,30,30,0);
             this.Capacity = new Resources(0, 0, 0, 100,0);

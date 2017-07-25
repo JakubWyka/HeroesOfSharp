@@ -9,7 +9,7 @@ namespace Heroes.Game
     {
         public Oremine(Player own) : base("Oremine", "TODO", "Oremine.png")
         { 
-            this.Level = 1;
+            this.Level = 0;
             this.Maxlevel = 5;
             this.Levelupcost = new Resources(60,60,60,60,0);
             this.Capacity = new Resources(0, 0, 100, 0,0);

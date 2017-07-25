@@ -13,22 +13,32 @@ namespace Heroes.Game
             this.Maxlevel = 1;         
             this.Capacity = new Resources(0, 0, 0, 0, 7);
             this.Actualamount = new Resources();
+            this.Levelupcost = new Resources(70, 70, 70, 70, 0);
+            this.Actualproductivity = new Resources(0, 0, 0, 0, 0);
+            this.Levelprodbonus = new Resources(0, 0, 0, 0, 0);
+            this.Capacitylevbonus = new Resources(0, 0, 0, 0, 0);
             this.Owner = own;
         }
 
         public override void Produce()
         {
-            if (Actualamount.Troops < Capacity.Troops)
+            if (this.Level > 0)
             {
-                Actualamount.Troops++;
-                Owner.Goods.Minus(Owner.PlayerArmy.Archers.Expense);
+                if (Actualamount.Troops < Capacity.Troops)
+                {
+                    Actualamount.Troops++;
+                    Owner.Goods.Minus(Owner.PlayerArmy.Archers.Expense);
+                }
             }
         }
 
         public override void Getresources()
         {
-            Owner.PlayerArmy.Archers.AddReinforcements(Actualamount.Troops);
-            Actualamount.Zero();
+            if (this.Level > 0)
+            {
+                Owner.PlayerArmy.Archers.AddReinforcements(Actualamount.Troops);
+                Actualamount.Zero();
+            }
         }
     }
 }

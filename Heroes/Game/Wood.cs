@@ -9,7 +9,7 @@ namespace Heroes.Game
     {
         public Wood(Player own) : base("Wood", "TODO", "Wood.png")
         { 
-            this.Level = 1;
+            this.Level = 0;
             this.Maxlevel = 5;
             this.Levelupcost = new Resources(40,40,40,40,0);
             this.Capacity = new Resources(100, 0, 0, 0,0);

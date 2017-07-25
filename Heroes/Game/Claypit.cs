@@ -9,7 +9,7 @@ namespace Heroes.Game
     {
         public Claypit(Player own) : base("Claypit", "TODO", "Claypit.png")
         { 
-            this.Level = 1;
+            this.Level = 0;
             this.Maxlevel = 5;
             this.Levelupcost = new Resources(50,50,50,50,0);
             this.Capacity = new Resources(0, 100, 0, 0,0);
