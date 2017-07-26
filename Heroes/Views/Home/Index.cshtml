@@ -1,15 +1,14 @@
 ﻿@{
     ViewData["Title"] = "HeroesOfCSharp";
 }
-@{
-    if (!TempData.ContainsKey("Player"))
-    {
-        @using (Html.BeginForm("AddPlayer", "Home", FormMethod.Post))
-        {<h2>Creating a hero</h2>
-            <div class="form-group, body-content">
-                <label class="sr-only" for="inputName"><b>Name:</b></label> <input class="form-control" id="inputName" type="text" name="Name" placeholder="Your Name" required /><br /><br />
-                <button type="submit" class="btn btn-default" value="AddPlayer"> Submit</button>
-            </div>
-        }
+
+@if (!TempData.ContainsKey("Player"))
+{
+    @using (Html.BeginForm("AddPlayer", "Home", FormMethod.Post))
+    {<h2>Creating a hero</h2>
+        <div class="form-group, body-content">
+            <label class="sr-only" for="inputName"><b>Name:</b></label> <input class="form-control" id="inputName" type="text" name="Name" placeholder="Your Name" required /><br /><br />
+            <button type="submit" class="btn btn-default" value="AddPlayer"> Submit</button>
+        </div>
     }
 }

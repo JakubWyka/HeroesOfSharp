@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Heroes.Game
 {
-    public class Gryphonshatchery : Building
+    public class Gryphonshatchery : CreaturesDwelling
     {
-        public Gryphonshatchery(Player own) : base("Gryphonshatchery", "TODO", "Gryphonshatchery.jpg")
+        public Gryphonshatchery(Player own) : base("Gryphonshatchery", "TODO", "Gryphonshatchery.jpg", "Gryphon", "Gryphon.png")
         {
             this.Level = 0;
             this.Maxlevel = 1;
@@ -19,7 +19,7 @@ namespace Heroes.Game
             this.Capacitylevbonus = new Resources(0, 0, 0, 0, 0);
             this.Owner = own;
         }
-
+        override public Resources RecruitmentCost { get => Owner.PlayerArmy.Gryphons.Expense; }
         public override void Produce()
         {
             if (this.Level > 0)

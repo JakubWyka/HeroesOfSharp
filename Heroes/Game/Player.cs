@@ -23,7 +23,7 @@ namespace Heroes.Game
             Name = n;
             city = new Dictionary<String, Building>();
             PlayerArmy = new Army();
-            goods = new Resources(100, 100, 100, 100, 0);
+            goods = new Resources(500, 500, 500, 500, 0);
             City.Add("Wood", new Wood(this));
             City.Add("Claypit", new Claypit(this));
             City.Add("Oremine", new Oremine(this));

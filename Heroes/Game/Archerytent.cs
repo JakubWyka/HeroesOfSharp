@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Heroes.Game
 {
-    public class Archerytent : Building
+    public class Archerytent : CreaturesDwelling
     {
-        public Archerytent(Player own) : base("Archerytent", "TODO", "Archerytent.jpg")
+        public Archerytent(Player own) : base("Archerytent", "TODO", "Archerytent.jpg", "Archer", "Archer.png")
         {
             this.Level = 0;
             this.Maxlevel = 1;         
@@ -19,6 +19,7 @@ namespace Heroes.Game
             this.Capacitylevbonus = new Resources(0, 0, 0, 0, 0);
             this.Owner = own;
         }
+        override public Resources RecruitmentCost { get => Owner.PlayerArmy.Archers.Expense; }
 
         public override void Produce()
         {

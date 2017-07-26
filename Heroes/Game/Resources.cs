@@ -26,6 +26,7 @@ namespace Heroes.Game
             clay = c;
             ore = o;
             gold = g;
+            troops = t;
         }
         public Resources()
         {
@@ -41,12 +42,12 @@ namespace Heroes.Game
                 throw new Exception("Not enough recources");
             else
             {
-
+                wood -= re.Wood;
+                clay -= re.Clay;
+                gold -= re.Gold;
+                ore -= re.Ore;
             }
-            wood -= re.Wood;
-            clay -= re.Clay;
-            gold -= re.Gold;
-            ore -= re.Ore;
+
             Troops -= re.Troops;
         }
         public void Plus(Resources re)
@@ -67,7 +68,7 @@ namespace Heroes.Game
         }
         public void Limit(Resources max)
         {
-            if(wood>max.Wood)
+            if (wood > max.Wood)
                 wood = max.Wood;
             if (clay > max.Clay)
                 clay = max.Clay;
@@ -80,10 +81,10 @@ namespace Heroes.Game
         }
         public void Multiply(int num)
         {
-            wood = wood*num;
-            clay = clay*num;
-            gold = gold*num;
-            ore = ore*num;
+            wood = wood * num;
+            clay = clay * num;
+            gold = gold * num;
+            ore = ore * num;
             troops = troops * num;
         }
     }

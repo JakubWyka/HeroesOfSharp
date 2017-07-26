@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Heroes.Game
 {
-    public class Knightbarrack : Building
+    public class Knightbarrack : CreaturesDwelling
     {
-        public Knightbarrack(Player own) : base("Knightbarrack", "TODO", "Knightbarrack.jpg")
+        public Knightbarrack(Player own) : base("Knightbarrack", "TODO", "Knightbarrack.jpg", "Knight", "Knight.png")
         {
             this.Level = 0;
             this.Maxlevel = 1;
@@ -19,6 +19,7 @@ namespace Heroes.Game
             this.Capacitylevbonus = new Resources(0, 0, 0, 0, 0);
             this.Owner = own;
         }
+        override public Resources RecruitmentCost { get => Owner.PlayerArmy.Knights.Expense; }
 
         public override void Produce()
         {

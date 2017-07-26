@@ -12,19 +12,19 @@
                 </tr>
             </thead>
             <tbody>
-                @{
-                    foreach (var c in Model)
+
+                @foreach (var c in Model)
+                {
+                    if (c.Population > 0)
                     {
-                        if (c.Population > 0)
-                        {
-                            <tr>
-                                <td><img src=@("/images/" + c.FileName) style="width: 150px; height: 150px" /></td>
-                                <td>@c.Name</td>
-                                <td>@c.Population</td>
-                            </tr>
-                        }
+                        <tr>
+                            <td><img src=@("/images/" + c.FileName) style="width: 150px; height: 150px" /></td>
+                            <td>@c.Name</td>
+                            <td>@c.Population</td>
+                        </tr>
                     }
                 }
+
             </tbody>
 
         </table>

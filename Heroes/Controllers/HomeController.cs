@@ -9,23 +9,23 @@ using Heroes.Game;
 
 namespace Heroes.Controllers
 {
-     
+
     public class HomeController : Controller
     {
         static Dictionary<String, Player> Players = new Dictionary<String, Player>();
         [NonAction]
-        public void StartFight(List<Game.Player> players , string type)
+        public void StartFight(List<Game.Player> players, string type)
         {
             Game.Player P1 = players[0]; //P1 atakujacy
             Game.Player P2 = players[1];
-            P1.Fight(P2 , type);
+            P1.Fight(P2, type);
         }
 
         public IActionResult Fight()
         {
-           
+
             var players = PlayersList();
-          
+
             return View(players);
 
 
@@ -87,12 +87,12 @@ namespace Heroes.Controllers
             {
                 Game.Player P1 = new Game.Player("1");
                 Game.Player P2 = new Game.Player("2");  //stworzenie 2 graczy do testow  
-                Game.test.MyGlobalVariable1=P1;
+                Game.test.MyGlobalVariable1 = P1;
                 Game.test.MyGlobalVariable1.PlayerArmy.Archers.AddReinforcements(19);
                 Game.test.MyGlobalVariable1.PlayerArmy.Knights.AddReinforcements(19);
                 Game.test.MyGlobalVariable1.PlayerArmy.Dragons.AddReinforcements(3);
                 Game.test.MyGlobalVariable1.PlayerArmy.Gryphons.AddReinforcements(7);
-                Game.test.MyGlobalVariable2=P2;
+                Game.test.MyGlobalVariable2 = P2;
                 Game.test.MyGlobalVariable2.PlayerArmy.Gryphons.AddReinforcements(7);
                 Game.test.MyGlobalVariable2.PlayerArmy.Dragons.AddReinforcements(7);
                 Game.test.MyGlobalVariable2.PlayerArmy.Knights.AddReinforcements(7);
@@ -113,7 +113,7 @@ namespace Heroes.Controllers
 
         public IActionResult Index()
         {
-              return View();
+            return View();
         }
 
         public IActionResult Town()
@@ -124,6 +124,7 @@ namespace Heroes.Controllers
             ViewData["Gold"] = p.Goods.Gold;
             ViewData["Clay"] = p.Goods.Clay;
             ViewData["Wood"] = p.Goods.Wood;
+
             return View(buildings.Select(k => k.Value).ToList());
         }
 
@@ -156,12 +157,36 @@ namespace Heroes.Controllers
         [HttpPost]
         public IActionResult AddPlayer(string Name)
         {
-            if (!TempData.ContainsKey("Player"))
+            if (!Players.ContainsKey("Player"))
             {
                 TempData.Add("Player", Name);
                 Players.Add(Name, new Player(Name));
             }
             return View();
+        }
+
+        [HttpGet]
+        public void Produce()
+        {
+            //something doesnt work here :/
+
+            var time = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
+
+            if (TempData.ContainsKey("Player"))
+            {
+                var buildings = from b in Players[TempData.Peek("Player").ToString()].City.Select(k => k.Value).ToList()
+                                where b.Level > 0
+                                select b;
+                foreach (var b in buildings)
+                {
+                    if (time - b.LastProduce > b.Interval)
+                    {
+                        b.Produce();
+                        b.Getresources();
+                        b.LastProduce = time;
+                    }
+                }
+            }
         }
     }
 }

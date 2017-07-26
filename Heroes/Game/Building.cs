@@ -10,6 +10,8 @@ namespace Heroes.Game
     {
         int level;
         int maxlevel;
+        long _LastProduce;
+        long _Interval;
         Resources capacity;//max przechowywane
         Resources actualamount;//przechowywane
         Resources actualproductivity;//produkcja 
@@ -20,16 +22,18 @@ namespace Heroes.Game
 
         public int Level { get => level; set => level = value; }
         public int Maxlevel { get => maxlevel; set => maxlevel = value; }
-        internal Resources Capacity { get => capacity; set => capacity = value; }
-        internal Resources Actualamount { get => actualamount; set => actualamount = value; }
+        public Resources Capacity { get => capacity; set => capacity = value; }
+        public Resources Actualamount { get => actualamount; set => actualamount = value; }
         internal Resources Actualproductivity { get => actualproductivity; set => actualproductivity = value; }
         internal Resources Levelprodbonus { get => levelprodbonus; set => levelprodbonus = value; }
         public Resources Levelupcost { get => levelupcost; set => levelupcost = value; }
         internal Player Owner { get => owner; set => owner = value; }
         internal Resources Capacitylevbonus { get => capacitylevbonus; set => capacitylevbonus = value; }
-
+        public long LastProduce { get => _LastProduce; set => _LastProduce = value; }
+        public long Interval { get => _Interval; }
         public Building(String Name, String Description, String FileName) : base(Name, Description, FileName)
         {
+            _Interval = 10;
         }
 
         public void Levelup()
