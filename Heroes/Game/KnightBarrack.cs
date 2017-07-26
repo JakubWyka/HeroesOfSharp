@@ -7,7 +7,7 @@ namespace Heroes.Game
 {
     public class Knightbarrack : CreaturesDwelling
     {
-        public Knightbarrack(Player own) : base("Knightbarrack", "TODO", "Knightbarrack.jpg", "Knight", "Knight.png")
+        public Knightbarrack(Player own) : base("Knightbarrack", "Allows you to recruit knights", "Knightbarrack.jpg", "Knight", "Knight.png")
         {
             this.Level = 0;
             this.Maxlevel = 1;

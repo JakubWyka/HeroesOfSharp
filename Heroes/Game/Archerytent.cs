@@ -7,7 +7,7 @@ namespace Heroes.Game
 {
     public class Archerytent : CreaturesDwelling
     {
-        public Archerytent(Player own) : base("Archerytent", "TODO", "Archerytent.jpg", "Archer", "Archer.png")
+        public Archerytent(Player own) : base("Archerytent", "Allows you to recruit archers", "Archerytent.jpg", "Archer", "Archer.png")
         {
             this.Level = 0;
             this.Maxlevel = 1;         

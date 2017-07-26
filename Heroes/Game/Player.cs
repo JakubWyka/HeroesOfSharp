@@ -9,7 +9,7 @@ namespace Heroes.Game
 {
     public class Player
     {
-        String Name;
+        String _Name;
         Resources goods;
         Army playerArmy;
         Dictionary<String, Building> city;
@@ -19,9 +19,10 @@ namespace Heroes.Game
         public Dictionary<String, Building> City { get => city; set => city = value; }
         public Army PlayerArmy { get => playerArmy; set => playerArmy = value; }
         public int HashCode { get => _HashCode; }
+        public String Name { get => _Name; }
         public Player(String n, int HashCode = 0)
         {
-            Name = n;
+            _Name = n;
             _HashCode = HashCode;
             city = new Dictionary<String, Building>();
             PlayerArmy = new Army();

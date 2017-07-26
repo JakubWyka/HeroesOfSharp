@@ -20,6 +20,7 @@
             <tr>
                 <th>Image</th>
                 <th>Name</th>
+                <th>Descripton</th>
                 <th>Level</th>
                 <th>Cost</th>
                 <th>Build</th>
@@ -31,6 +32,7 @@
                 <tr>
                     <td><img src=@("/images/" + b.FileName) style="width: 150px; height: 150px" /></td>
                     <td>@b.Name</td>
+                    <td><p>@b.Descritpion</p></td>
                     <td>@b.Level</td>
 
                     @if (b.Level != b.Maxlevel && b.Levelupcost != null)

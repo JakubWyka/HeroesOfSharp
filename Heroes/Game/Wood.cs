@@ -7,7 +7,7 @@ namespace Heroes.Game
 {
     public class Wood : Mine
     {
-        public Wood(Player own) : base("Wood", "TODO", "Wood.png")
+        public Wood(Player own) : base("Wood", "Produces wood", "Wood.png")
         { 
             this.Level = 0;
             this.Maxlevel = 5;

@@ -113,7 +113,7 @@ namespace Heroes.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(Players.Select(k => k.Value).ToList());
         }
 
         public IActionResult Town()
@@ -154,14 +154,20 @@ namespace Heroes.Controllers
         [HttpPost]
         public IActionResult AddPlayer(string Name, string Pass)
         {
-            ViewData["Message"] = "Success! Created new player (" + Name + ")! Don't forget your password ;)";
             if (!Players.ContainsKey(Name))
-                Players.Add(Name, new Player(Name, Pass.GetHashCode()));
-            if (!TempData.ContainsKey("Player") && Pass.GetHashCode() == Players[Name].HashCode)
+            {
+                ViewData["Message"] = "Success! Created new player (" + Name + ")! Don't forget your password ;)";
                 TempData.Add("Player", Name);
+                Players.Add(Name, new Player(Name, Pass.GetHashCode()));
+            }
+            else if (!TempData.ContainsKey("Player") && Pass.GetHashCode() == Players[Name].HashCode)
+            {
+                ViewData["Message"] = "Weclome back " + Name + "!";
+                TempData.Add("Player", Name);
+            }
             else
                 ViewData["Message"] = "Incorect login";
-            return View();
+            return View("Message");
         }
         [HttpPost]
         public IActionResult Recruit(string Archer, string Dragon, string Gryphon, string Knight)
@@ -223,14 +229,20 @@ namespace Heroes.Controllers
                         b.LastProduce = time;
                     }
                 }
-                return "<img src = \"/images/Gold.jpeg\" style = \"width: 30px; height: 30px;\" /> <span>" + ViewData["Gold"].ToString() +
-                "</span> <img src = \"/images/Ore.jpg\" style = \"width: 30px; height: 30px; margin-left: 10px;\" /> <span>" + ViewData["Ore"].ToString() +
-                "</span> <img src = \"/images/Wood.jpg\" style = \"width: 30px; height: 30px; margin-left: 10px;\" /> <span>" + ViewData["Wood"].ToString() +
-                "</span> <img src = \"/images/Clay.jpg\" style = \"width: 30px; height: 30px; margin-left: 10px;\" /> <span>" + ViewData["Clay"].ToString() +
+                return "<img src = \"/images/Gold.jpeg\" style = \"width: 30px; height: 30px;\" data-toggle=\"tooltip\" title=\"Gold\"/> <span>" + ViewData["Gold"].ToString() +
+                "</span> <img src = \"/images/Ore.jpg\" style = \"width: 30px; height: 30px; margin-left: 10px;\" data-toggle=\"tooltip\" title=\"Ore\"/> <span>" + ViewData["Ore"].ToString() +
+                "</span> <img src = \"/images/Wood.jpg\" style = \"width: 30px; height: 30px; margin-left: 10px;\" data-toggle=\"tooltip\" title=\"Wood\"/> <span>" + ViewData["Wood"].ToString() +
+                "</span> <img src = \"/images/Clay.jpg\" style = \"width: 30px; height: 30px; margin-left: 10px;\" data-toggle=\"tooltip\" title=\"Clay\"/> <span>" + ViewData["Clay"].ToString() +
                 "</span>";
             }
             else return "";
 
+        }
+        public IActionResult Logout()
+        {
+            TempData.Clear();
+            ViewData["Message"] = "Logout";
+            return View("Message");
         }
     }
 }

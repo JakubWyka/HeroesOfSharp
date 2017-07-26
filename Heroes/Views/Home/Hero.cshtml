@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<Heroes.Game.Creature>
 <h2>@TempData.Peek("Player").ToString()</h2>
 <div class="row">
-    <img src="~/images/hero.jpg" class="col-md-6" style="width: 213px; height:304px" />
+    <div class="col-md-6"><img src="~/images/hero.jpg" class="img-rounded" style="width: 213px; height:304px" /></div>    
     <div class="col-md-6">
+        <h2>Army</h2>
         <table class="table">
             <thead>
                 <tr>

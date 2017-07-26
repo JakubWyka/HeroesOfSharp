@@ -7,7 +7,7 @@ namespace Heroes.Game
 {
     public class Gryphonshatchery : CreaturesDwelling
     {
-        public Gryphonshatchery(Player own) : base("Gryphonshatchery", "TODO", "Gryphonshatchery.jpg", "Gryphon", "Gryphon.png")
+        public Gryphonshatchery(Player own) : base("Gryphonshatchery", "Allows you to recruit gryphons", "Gryphonshatchery.jpg", "Gryphon", "Gryphon.png")
         {
             this.Level = 0;
             this.Maxlevel = 1;

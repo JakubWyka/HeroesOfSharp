@@ -7,7 +7,7 @@ namespace Heroes.Game
 {
     public class Dragonshatchery : CreaturesDwelling
     {
-        public Dragonshatchery(Player own) : base("Dragonshatchery", "TODO", "Dragonshatchery.png", "Dragon", "Dragon.png")
+        public Dragonshatchery(Player own) : base("Dragonshatchery", "Allows you to recruit dragons", "Dragonshatchery.png", "Dragon", "Dragon.png")
         {
             this.Level = 0;
             this.Maxlevel = 1;

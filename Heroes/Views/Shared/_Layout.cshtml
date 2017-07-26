@@ -6,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     <script type="text/javascript" src="~/js/ajax.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
     <environment names="Development">
-        
+
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
@@ -33,14 +38,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @{
-                        if (TempData.ContainsKey("Player"))
-                        {
-                            <li><a asp-area="" asp-controller="Home" asp-action="Hero">Hero</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Town">Town</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Fight">fight</a></li>
-                            }
-                        }
+                    @if (TempData.ContainsKey("Player"))
+                    {
+                        <li><a asp-area="" asp-controller="Home" asp-action="Hero">Hero</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Town">Town</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Logout">Logout</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Fight">fight</a></li>
+                    }
+
                 </ul>
             </div>
         </div>
