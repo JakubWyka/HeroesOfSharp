@@ -191,7 +191,7 @@ namespace Heroes.Controllers
             }
             catch (Exception e)
             {
-                ViewData["Message"] = e.Message;
+                TempData.Add("Message", e.Message);
             }
             return RedirectToAction("Town");
         }
