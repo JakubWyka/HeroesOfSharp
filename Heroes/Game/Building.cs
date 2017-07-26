@@ -59,6 +59,6 @@ namespace Heroes.Game
 
         abstract public void Produce();//produkowanie do przechowalni kopalni
 
-        abstract public void Getresources();//opróżnienie budynku, przetransferowanie dobra do uzytkownika
+        abstract public void Getresources(Resources amount);//opróżnienie budynku, przetransferowanie dobra do uzytkownika
     }
 }

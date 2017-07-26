@@ -25,19 +25,26 @@ namespace Heroes.Game
             if (this.Level > 0)
             {
                 if (Actualamount.Troops < Capacity.Troops)
-                {
                     Actualamount.Troops++;
-                    Owner.Goods.Minus(Owner.PlayerArmy.Gryphons.Expense);
-                }
             }
         }
 
-        public override void Getresources()
+        public override void Getresources(Resources amount)
         {
             if (this.Level > 0)
             {
-                Owner.PlayerArmy.Gryphons.AddReinforcements(Actualamount.Troops);
-                Actualamount.Zero();
+                var r = new Resources(Owner.PlayerArmy.Gryphons.Expense);
+                r.Multiply(amount.Troops);
+                try
+                {
+                    Owner.Goods.Minus(r);
+                    Actualamount.Minus(amount);
+                    Owner.PlayerArmy.Gryphons.AddReinforcements(amount.Troops);
+                }
+                catch
+                {
+                    throw;
+                }
             }
         }
     }

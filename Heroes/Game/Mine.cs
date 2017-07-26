@@ -20,14 +20,14 @@ namespace Heroes.Game
                 Actualamount.Plus(Actualproductivity);
                 Actualamount.Limit(Capacity);
             }
-            Getresources();
+            Getresources(this.Actualamount);
         }
-        override public void Getresources()//opróżnienie budynku, przetransferowanie dobra do uzytkownika
+        override public void Getresources(Resources amount)//opróżnienie budynku, przetransferowanie dobra do uzytkownika
         {
             if (this.level > 0)
             {
-                Owner.Goods.Plus(Actualamount);
-                Actualamount.Zero();
+                Owner.Goods.Plus(amount);
+                Actualamount.Minus(amount);
             }
         }
     }

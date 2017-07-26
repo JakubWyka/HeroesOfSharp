@@ -27,7 +27,7 @@
         </thead>
         <tbody>
             @foreach (var b in Model)
-                {
+            {
                 <tr>
                     <td><img src=@("/images/" + b.FileName) style="width: 150px; height: 150px" /></td>
                     <td>@b.Name</td>
@@ -73,46 +73,47 @@
             }
         </tbody>
     </table>
-    <h3>Troops</h3>
-    @using (Html.BeginForm("Recruit", "Home", FormMethod.Post))
-    {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Troops available</th>
-                    <th>Max</th>
-                    <th>Cost</th>
-                    <th>Recruitment</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var b in Model.OfType<Heroes.Game.CreaturesDwelling>())
+}
+<h3>Troops</h3>
+@using (Html.BeginForm("Recruit", "Home", FormMethod.Post))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Troops available</th>
+                <th>Max</th>
+                <th>Cost</th>
+                <th>Recruitment</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var b in Model.OfType<Heroes.Game.CreaturesDwelling>())
                 {
                     if (b.Level > 0)
                     {
-                        <tr>
-                            <td><img src=@("/images/" + b.CreatureFileName) style="width: 150px; height: 150px" /></td>
-                            <td>@b.CreatureName</td>
-                            <td>@b.Actualamount.Troops</td>
-                            <td>@b.Capacity.Troops</td>
+                    <tr>
+                        <td><img src=@("/images/" + b.CreatureFileName) style="width: 150px; height: 150px" /></td>
+                        <td>@b.CreatureName</td>
+                        <td>@b.Actualamount.Troops</td>
+                        <td>@b.Capacity.Troops</td>
 
-                            <td>
-                                <img src="~/images/Gold.jpeg" style="width: 30px; height: 30px;" />
-                                <span>@b.RecruitmentCost.Gold </span>
-                                <img src="~/images/Ore.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
-                                <span>@b.RecruitmentCost.Ore </span>
-                                <img src="~/images/Wood.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
-                                <span>@b.RecruitmentCost.Wood </span>
-                                <img src="~/images/Clay.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
-                                <span>@b.RecruitmentCost.Clay </span>
-                            </td>
-                            <td><input class="form-control" name=@b.CreatureName type="number" min="0" max=@b.Actualamount.Troops value="0" /></td>
-                        </tr>
-                    }
+                        <td>
+                            <img src="~/images/Gold.jpeg" style="width: 30px; height: 30px;" />
+                            <span>@b.RecruitmentCost.Gold </span>
+                            <img src="~/images/Ore.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
+                            <span>@b.RecruitmentCost.Ore </span>
+                            <img src="~/images/Wood.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
+                            <span>@b.RecruitmentCost.Wood </span>
+                            <img src="~/images/Clay.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
+                            <span>@b.RecruitmentCost.Clay </span>
+                        </td>
+                        <td><input class="form-control" name=@b.CreatureName type="number" min="0" max=@b.Actualamount.Troops value="0" /></td>
+                    </tr>
                 }
-            </tbody>
-        </table>
-    }
+            }
+        </tbody>
+    </table>
+        <button name="recruit" type="submit" class="btn btn-default">Recruit</button>
 }

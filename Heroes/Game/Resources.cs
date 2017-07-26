@@ -28,6 +28,15 @@ namespace Heroes.Game
             gold = g;
             troops = t;
         }
+
+        public Resources(Resources r)
+        {
+            wood = r.Wood;
+            clay = r.Clay;
+            ore = r.Ore;
+            gold = r.Gold;
+            troops = r.Troops;
+        }
         public Resources()
         {
             wood = 0;

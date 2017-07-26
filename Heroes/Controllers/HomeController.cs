@@ -161,6 +161,40 @@ namespace Heroes.Controllers
             }
             return View();
         }
+        [HttpPost]
+        public IActionResult Recruit(string Archer, string Dragon, string Gryphon, string Knight)
+        {
+            Player p = Players[TempData.Peek("Player").ToString()];
+            var r = new Resources(0, 0, 0, 0, 0);
+            try
+            {
+                if (Archer != null)
+                {
+                    r.Troops = Int32.Parse(Archer);
+                    p.City["Archerytent"].Getresources(r);
+                }
+                if (Dragon != null)
+                {
+                    r.Troops = Int32.Parse(Dragon);
+                    p.City["Dragonshatchery"].Getresources(r);
+                }
+                if (Gryphon != null)
+                {
+                    r.Troops = Int32.Parse(Gryphon);
+                    p.City["Gryphonshatchery"].Getresources(r);
+                }
+                if (Knight != null)
+                {
+                    r.Troops = Int32.Parse(Knight);
+                    p.City["Knightbarrack"].Getresources(r);
+                }
+            }
+            catch (Exception e)
+            {
+                ViewData["Message"] = e.Message;
+            }
+            return RedirectToAction("Town");
+        }
 
         [HttpGet]
         public string Produce()
