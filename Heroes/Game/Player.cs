@@ -13,14 +13,16 @@ namespace Heroes.Game
         Resources goods;
         Army playerArmy;
         Dictionary<String, Building> city;
+        int _HashCode;
 
         internal Resources Goods { get => goods; set => goods = value; }
         public Dictionary<String, Building> City { get => city; set => city = value; }
         public Army PlayerArmy { get => playerArmy; set => playerArmy = value; }
-
-        public Player(String n)
+        public int HashCode { get => _HashCode; }
+        public Player(String n, int HashCode = 0)
         {
             Name = n;
+            _HashCode = HashCode;
             city = new Dictionary<String, Building>();
             PlayerArmy = new Army();
             goods = new Resources(500, 500, 500, 500, 0);

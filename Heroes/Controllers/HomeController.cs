@@ -152,13 +152,15 @@ namespace Heroes.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddPlayer(string Name)
+        public IActionResult AddPlayer(string Name, string Pass)
         {
-            if (!Players.ContainsKey("Player"))
-            {
+            ViewData["Message"] = "Success! Created new player (" + Name + ")! Don't forget your password ;)";
+            if (!Players.ContainsKey(Name))
+                Players.Add(Name, new Player(Name, Pass.GetHashCode()));
+            if (!TempData.ContainsKey("Player") && Pass.GetHashCode() == Players[Name].HashCode)
                 TempData.Add("Player", Name);
-                Players.Add(Name, new Player(Name));
-            }
+            else
+                ViewData["Message"] = "Incorect login";
             return View();
         }
         [HttpPost]
