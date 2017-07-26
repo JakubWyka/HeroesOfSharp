@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Heroes.Game
 {
-    public class Claypit : Building
+    public class Claypit : Mine
     {
         public Claypit(Player own) : base("Claypit", "TODO", "Claypit.png")
         { 

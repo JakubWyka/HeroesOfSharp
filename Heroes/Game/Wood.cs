@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Heroes.Game
 {
-    public class Wood : Building
+    public class Wood : Mine
     {
         public Wood(Player own) : base("Wood", "TODO", "Wood.png")
         { 

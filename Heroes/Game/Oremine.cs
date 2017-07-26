@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Heroes.Game
 {
-    public class Oremine : Building
+    public class Oremine : Mine
     {
         public Oremine(Player own) : base("Oremine", "TODO", "Oremine.png")
         { 

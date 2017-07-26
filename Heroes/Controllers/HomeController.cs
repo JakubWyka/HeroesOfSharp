@@ -120,11 +120,6 @@ namespace Heroes.Controllers
         {
             Player p = Players[TempData.Peek("Player").ToString()];
             var buildings = from building in p.City select building;
-            ViewData["Ore"] = p.Goods.Ore;
-            ViewData["Gold"] = p.Goods.Gold;
-            ViewData["Clay"] = p.Goods.Clay;
-            ViewData["Wood"] = p.Goods.Wood;
-
             return View(buildings.Select(k => k.Value).ToList());
         }
 
@@ -141,6 +136,8 @@ namespace Heroes.Controllers
             try
             {
                 Players[TempData.Peek("Player").ToString()].City[submit].Levelup();
+                var time = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
+                Players[TempData.Peek("Player").ToString()].City[submit].LastProduce = time;
             }
             catch (Exception e)
             {
@@ -166,27 +163,38 @@ namespace Heroes.Controllers
         }
 
         [HttpGet]
-        public void Produce()
+        public string Produce()
         {
-            //something doesnt work here :/
-
             var time = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
 
             if (TempData.ContainsKey("Player"))
             {
+                Player p = Players[TempData.Peek("Player").ToString()];
+                ViewData["Ore"] = p.Goods.Ore;
+                ViewData["Gold"] = p.Goods.Gold;
+                ViewData["Clay"] = p.Goods.Clay;
+                ViewData["Wood"] = p.Goods.Wood;
                 var buildings = from b in Players[TempData.Peek("Player").ToString()].City.Select(k => k.Value).ToList()
                                 where b.Level > 0
                                 select b;
                 foreach (var b in buildings)
                 {
-                    if (time - b.LastProduce > b.Interval)
+                    if (time - b.LastProduce >= b.Interval)
                     {
-                        b.Produce();
-                        b.Getresources();
+                        for (long i = 0; i < (time - b.LastProduce) / b.Interval; i++)
+                            b.Produce();
+                        time = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
                         b.LastProduce = time;
                     }
                 }
+                return "<img src = \"/images/Gold.jpeg\" style = \"width: 30px; height: 30px;\" /> <span>" + ViewData["Gold"].ToString() +
+                "</span> <img src = \"/images/Ore.jpg\" style = \"width: 30px; height: 30px; margin-left: 10px;\" /> <span>" + ViewData["Ore"].ToString() +
+                "</span> <img src = \"/images/Wood.jpg\" style = \"width: 30px; height: 30px; margin-left: 10px;\" /> <span>" + ViewData["Wood"].ToString() +
+                "</span> <img src = \"/images/Clay.jpg\" style = \"width: 30px; height: 30px; margin-left: 10px;\" /> <span>" + ViewData["Clay"].ToString() +
+                "</span>";
             }
+            else return "";
+
         }
     }
 }

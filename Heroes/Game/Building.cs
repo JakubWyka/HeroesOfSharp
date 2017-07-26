@@ -8,17 +8,17 @@ namespace Heroes.Game
 {
     abstract public class Building : GameObject
     {
-        int level;
-        int maxlevel;
-        long _LastProduce;
-        long _Interval;
-        Resources capacity;//max przechowywane
-        Resources actualamount;//przechowywane
-        Resources actualproductivity;//produkcja 
-        Resources levelprodbonus;
-        Resources capacitylevbonus;
-        Resources levelupcost;
-        Player owner;
+        protected int level;
+        protected int maxlevel;
+        protected long _LastProduce;
+        protected long _Interval;
+        protected Resources capacity;//max przechowywane
+        protected Resources actualamount;//przechowywane
+        protected Resources actualproductivity;//produkcja 
+        protected Resources levelprodbonus;
+        protected Resources capacitylevbonus;
+        protected Resources levelupcost;
+        protected Player owner;
 
         public int Level { get => level; set => level = value; }
         public int Maxlevel { get => maxlevel; set => maxlevel = value; }
@@ -33,7 +33,7 @@ namespace Heroes.Game
         public long Interval { get => _Interval; }
         public Building(String Name, String Description, String FileName) : base(Name, Description, FileName)
         {
-            _Interval = 10;
+            _Interval = 5;
         }
 
         public void Levelup()
@@ -57,23 +57,8 @@ namespace Heroes.Game
             }
         }
 
-        public virtual void Produce()//produkowanie do przechowalni kopalni
-        {
-            if (this.level > 0)
-            {
-                Actualamount.Plus(Actualproductivity);
-                Actualamount.Limit(Capacity);
-            }
-        }
+        abstract public void Produce();//produkowanie do przechowalni kopalni
 
-        public virtual void Getresources()//opróżnienie budynku, przetransferowanie dobra do uzytkownika
-        {
-            if (this.level > 0)
-            {
-                Owner.Goods.Plus(Actualamount);
-                Actualamount.Zero();
-            }
-        }
-
+        abstract public void Getresources();//opróżnienie budynku, przetransferowanie dobra do uzytkownika
     }
 }

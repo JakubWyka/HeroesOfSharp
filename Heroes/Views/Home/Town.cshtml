@@ -13,17 +13,6 @@
     }
 }
 
-<div class="row well">
-    <img src="~/images/Gold.jpeg" style="width: 30px; height: 30px;" />
-    <span>@ViewData["Gold"] </span>
-    <img src="~/images/Ore.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
-    <span>@ViewData["Ore"] </span>
-    <img src="~/images/Wood.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
-    <span>@ViewData["Wood"] </span>
-    <img src="~/images/Clay.jpg" style="width: 30px; height: 30px; margin-left: 10px;" />
-    <span>@ViewData["Clay"]</span>
-</div>
-
 @using (Html.BeginForm("Build", "Home", FormMethod.Post))
 {
     <table class="table">

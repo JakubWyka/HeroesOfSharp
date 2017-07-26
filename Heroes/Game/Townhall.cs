@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Heroes.Game
 {
-    public class Townhall : Building
+    public class Townhall : Mine
     {
         public Townhall(Player own) : base("Townhall", "TODO", "Townhall.png")
         {
