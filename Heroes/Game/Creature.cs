@@ -12,12 +12,14 @@ namespace Heroes.Game
         int health;
         int population;
         Resources expense;
+        string isFighting;
 
         public int Attack { get => attack; set => attack = value; }
         public int Initiative { get => initiative; set => initiative = value; }
         public int Health { get => health; set => health = value; }
         public int Population { get => population; set => population = value; }
         public Resources Expense { get => expense;  set => expense = value; } //dodac protected w set
+        public string IsFighting { get => isFighting; set => isFighting = value; }
 
 
         public Creature(String Name, String Description, String FileName) : base(Name, Description, FileName)

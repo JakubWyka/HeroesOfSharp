@@ -25,7 +25,7 @@ namespace Heroes.Controllers
         {
 
             var players = PlayersList();
-
+            int s=   players[0].FindMaxInitiative(players[1]);//ustawienie kto bedzie pierwszy atakowal
             return View(players);
 
 
@@ -38,6 +38,7 @@ namespace Heroes.Controllers
             var players = PlayersList();
             StartFight(players, type);
             ViewData["Message"] = type;
+           int s= players[0].FindMaxInitiative(players[1]);
             return View(players);
         }
       

@@ -120,12 +120,21 @@ namespace Heroes.Game
         {
             int maxiniplayer1 = 0;
             int maxiniplayer2 = 0;
-            for (int a = 0; a < 4; a++)// znalezienie max ini
+            Creature playerWitchMaxIni1=null;
+            Creature playerWitchMaxIni2=null;
+            for (int a = 0; a < 4; a++)
+            {
+                this.playerArmy.Container[a].IsFighting = "orange";
+                player2.playerArmy.Container[a].IsFighting = "blue";
+            }
+
+                for (int a = 0; a < 4; a++)// znalezienie max ini
             {
                 if (playerArmy.Container[a].Population > 0)
                 {
                     if(maxiniplayer1 < PlayerArmy.Container[a].Initiative)
                     {
+                        playerWitchMaxIni1 = this.playerArmy.Container[a];
                         maxiniplayer1 = playerArmy.Container[a].Initiative;
                     }
                 }
@@ -134,16 +143,27 @@ namespace Heroes.Game
                 {
                     if (maxiniplayer2 < player2.PlayerArmy.Container[a].Initiative)
                     {
+                        playerWitchMaxIni2 = player2.playerArmy.Container[a];
                         maxiniplayer2 = player2.playerArmy.Container[a].Initiative;
                     }
                 }
             }
             if (maxiniplayer1 >= maxiniplayer2)
             {
+                if (playerWitchMaxIni1 != null)
+                {
+                    playerWitchMaxIni1.IsFighting = "red";
+                }
+           
+               
                 return maxiniplayer1;
             }
             else
             {
+                if (playerWitchMaxIni2 != null)
+                {
+                    playerWitchMaxIni2.IsFighting = "red";
+                }
                 return maxiniplayer2;
             }
             
