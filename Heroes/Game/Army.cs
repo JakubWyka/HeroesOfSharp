@@ -23,7 +23,7 @@ namespace Heroes.Game
         public Army()
         {
             container = new Creature[4];
-              dragons = new Dragon();
+            dragons = new Dragon();
             gryphons = new Gryphon();
             archers = new Archer();
             knights = new Knight();
@@ -31,6 +31,16 @@ namespace Heroes.Game
             Container[1] = gryphons;
             Container[2] = archers;
             Container[3] = knights;
+        }
+        public bool IsEmpty
+        {
+            get
+            {
+                if (dragons.Population == 0 && gryphons.Population == 0 && archers.Population == 0 && knights.Population == 0)
+                    return true;
+                else
+                    return false;
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Heroes.Game
             this.Expense.Ore = 5;
             this.Expense.Gold = 20;
             this.Population = 0;
-            this.IsFighting = "white";
+            this.IsFighting = "orange";
         }
     }
 }

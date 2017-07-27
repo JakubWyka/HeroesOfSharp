@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Heroes.Game.Player>
+@foreach (var item in Model)
+{
+    <tr>
+        @foreach (var minion in item.PlayerArmy.Container)
+                {
+            <td>
+                @if (item.Name == TempData.Peek("Player").ToString())
+                    {
+                    <button type="submit" class="btn btn-default" name="type" value=@minion.Name disabled><img src=@("/images/" + minion.FileName) style="width:200px;height:250px;border:4px solid  @Html.DisplayFor(modelItem => minion.IsFighting);" /></button>
+                }
+                else if (item.IsMyTurn)
+                {
+                    <button type="submit" class="btn btn-default enemyMinion" name="type" value=@minion.Name disabled><img src=@("/images/" + minion.FileName) style="width:200px;height:250px;border:4px solid blue" /></button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-default enemyMinion" name="type" value=@minion.Name><img src=@("/images/" + minion.FileName) style="width:200px;height:250px;border:4px solid blue" /></button>
+                }
+            </td>
+        }
+    </tr>
+    <tr>
+        @foreach (var minion in item.PlayerArmy.Container)
+                {
+            @if (item.Name == TempData.Peek("Player").ToString())
+                    {
+                <td id="my">@(minion.Name + "s"): @Html.DisplayFor(modelItem => minion.Population) @*ini: @Html.DisplayFor(modelItem => minion.Initiative)*@</td>
+                }
+                else
+                {
+                    <td id="enemy">@(minion.Name + "s"): @Html.DisplayFor(modelItem => minion.Population) @*ini: @Html.DisplayFor(modelItem => minion.Initiative)*@</td>
+                }
+            }
+        </tr>
+    }

@@ -16,59 +16,43 @@ namespace Heroes.Controllers
         [NonAction]
         public void StartFight(List<Game.Player> players, string type)
         {
-            Game.Player P1 = players[0]; //P1 atakujacy
-            Game.Player P2 = players[1];
-            P1.Fight(P2, type);
+            if (players[0].IsMyTurn)
+                players[0].Fight(players[1], type);
+            else
+                players[1].Fight(players[0], type);
         }
 
-        public IActionResult Fight()
-        {
-
-            var players = PlayersList();
-            int s=   players[0].FindMaxInitiative(players[1]);//ustawienie kto bedzie pierwszy atakowal
-            return View(players);
-
-
-        }
-        
-
-        [HttpPost]
-        public IActionResult Attack(string type) //typ okresla stworka jaki zostal zatakowany
+        [HttpPost, HttpGet]
+        public IActionResult Fight(string type) //typ okresla stworka jaki zostal zatakowany
         {
             var players = PlayersList();
-            StartFight(players, type);
-            ViewData["Message"] = type;
-           int s= players[0].FindMaxInitiative(players[1]);
+            if (type != null)
+            {
+                StartFight(players, type);
+                ViewData["Message"] = type;
+            }
+            if (players[0].IsMyTurn)
+                players[0].FindMaxInitiative(players[1]);
+            else
+                players[1].FindMaxInitiative(players[0]);
+
+            if (players[0].PlayerArmy.IsEmpty || players[1].PlayerArmy.IsEmpty)
+            {
+                players[0].EnemyPlayerName = "";
+                players[1].EnemyPlayerName = "";
+            }
             return View(players);
         }
-      
+
         [NonAction]
         public List<Game.Player> PlayersList()
         {
-            if (Game.test.MyGlobalVariable1 == null)
-            {
-                Game.Player P1 = new Game.Player("1");
-                Game.Player P2 = new Game.Player("2");  //stworzenie 2 graczy do testow  
-                Game.test.MyGlobalVariable1 = P1;
-                Game.test.MyGlobalVariable1.PlayerArmy.Archers.AddReinforcements(19);
-                Game.test.MyGlobalVariable1.PlayerArmy.Knights.AddReinforcements(19);
-                Game.test.MyGlobalVariable1.PlayerArmy.Dragons.AddReinforcements(3);
-                Game.test.MyGlobalVariable1.PlayerArmy.Gryphons.AddReinforcements(7);
-                Game.test.MyGlobalVariable2 = P2;
-                Game.test.MyGlobalVariable2.PlayerArmy.Gryphons.AddReinforcements(7);
-                Game.test.MyGlobalVariable2.PlayerArmy.Dragons.AddReinforcements(7);
-                Game.test.MyGlobalVariable2.PlayerArmy.Knights.AddReinforcements(7);
-                Game.test.MyGlobalVariable2.PlayerArmy.Archers.AddReinforcements(7);
-                return new List<Game.Player>{
-     P1,
-    P2,
-            };
-            }
-            else return new List<Game.Player>{
-    Game.test.MyGlobalVariable1,
-    Game.test.MyGlobalVariable2,
-            };
-
+            if (TempData.ContainsKey("Player") && Players.ContainsKey(TempData.Peek("Player").ToString()) && Players.ContainsKey(Players[TempData.Peek("Player").ToString()].EnemyPlayerName))
+                return new List<Player> { Players[TempData.Peek("Player").ToString()],
+                    Players[Players[TempData.Peek("Player").ToString()].EnemyPlayerName]};
+            else if (TempData.ContainsKey("Player") && Players.ContainsKey(TempData.Peek("Player").ToString()))
+                return new List<Player> { Players[TempData.Peek("Player").ToString()] };
+            else return null;
         }
 
 
@@ -174,10 +158,6 @@ namespace Heroes.Controllers
             if (TempData.ContainsKey("Player"))
             {
                 Player p = Players[TempData.Peek("Player").ToString()];
-                ViewData["Ore"] = p.Goods.Ore;
-                ViewData["Gold"] = p.Goods.Gold;
-                ViewData["Clay"] = p.Goods.Clay;
-                ViewData["Wood"] = p.Goods.Wood;
                 var buildings = from b in Players[TempData.Peek("Player").ToString()].City.Select(k => k.Value).ToList()
                                 where b.Level > 0
                                 select b;
@@ -191,14 +171,40 @@ namespace Heroes.Controllers
                         b.LastProduce = time;
                     }
                 }
-                return "<img src = \"/images/Gold.jpeg\" style = \"width: 30px; height: 30px;\" data-toggle=\"tooltip\" title=\"Gold\"/> <span>" + ViewData["Gold"].ToString() +
-                "</span> <img src = \"/images/Ore.jpg\" style = \"width: 30px; height: 30px; margin-left: 10px;\" data-toggle=\"tooltip\" title=\"Ore\"/> <span>" + ViewData["Ore"].ToString() +
-                "</span> <img src = \"/images/Wood.jpg\" style = \"width: 30px; height: 30px; margin-left: 10px;\" data-toggle=\"tooltip\" title=\"Wood\"/> <span>" + ViewData["Wood"].ToString() +
-                "</span> <img src = \"/images/Clay.jpg\" style = \"width: 30px; height: 30px; margin-left: 10px;\" data-toggle=\"tooltip\" title=\"Clay\"/> <span>" + ViewData["Clay"].ToString() +
+                return "<img src = \"/images/Gold.jpeg\" style = \"width: 30px; height: 30px;\" data-toggle=\"tooltip\" title=\"Gold\"/> <span>" + p.Goods.Gold.ToString() +
+                "</span> <img src = \"/images/Ore.jpg\" style = \"width: 30px; height: 30px; margin-left: 10px;\" data-toggle=\"tooltip\" title=\"Ore\"/> <span>" + p.Goods.Ore.ToString() +
+                "</span> <img src = \"/images/Wood.jpg\" style = \"width: 30px; height: 30px; margin-left: 10px;\" data-toggle=\"tooltip\" title=\"Wood\"/> <span>" + p.Goods.Wood.ToString() +
+                "</span> <img src = \"/images/Clay.jpg\" style = \"width: 30px; height: 30px; margin-left: 10px;\" data-toggle=\"tooltip\" title=\"Clay\"/> <span>" + p.Goods.Clay.ToString() +
                 "</span>";
             }
             else return "";
 
+        }
+        [HttpGet]
+        public string AmIAttacked()
+        {
+            if (TempData.ContainsKey("Player"))
+                return Players[TempData.Peek("Player").ToString()].EnemyPlayerName;
+            else
+                return "";
+        }
+
+        [HttpGet]
+        public IActionResult FightInfo()
+        {
+
+            var players = PlayersList();
+            return PartialView("FightInfo", players);
+        }
+
+        [HttpPost]
+        public IActionResult AttackPlayer(string player)
+        {
+            Players[TempData.Peek("Player").ToString()].EnemyPlayerName = player;
+            Players[TempData.Peek("Player").ToString()].IsMyTurn = true;
+            Players[player].EnemyPlayerName = TempData.Peek("Player").ToString();
+            Players[player].IsMyTurn = false;
+            return RedirectToAction("Fight");
         }
         public IActionResult Logout()
         {

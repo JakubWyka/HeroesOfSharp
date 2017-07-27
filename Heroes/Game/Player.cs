@@ -10,20 +10,26 @@ namespace Heroes.Game
     public class Player
     {
         String _Name;
+        String _EnemyPlayerName;
         Resources goods;
         Army playerArmy;
         Dictionary<String, Building> city;
         int _HashCode;
+        bool _IsMyTurn;
 
         internal Resources Goods { get => goods; set => goods = value; }
         public Dictionary<String, Building> City { get => city; set => city = value; }
         public Army PlayerArmy { get => playerArmy; set => playerArmy = value; }
         public int HashCode { get => _HashCode; }
         public String Name { get => _Name; }
+        public String EnemyPlayerName { get => _EnemyPlayerName; set => _EnemyPlayerName = value; }
+        public bool IsMyTurn { get => _IsMyTurn; set => _IsMyTurn = value; }
         public Player(String n, int HashCode = 0)
         {
             _Name = n;
+            _EnemyPlayerName = "";
             _HashCode = HashCode;
+            _IsMyTurn = false;
             city = new Dictionary<String, Building>();
             PlayerArmy = new Army();
             goods = new Resources(500, 500, 500, 500, 0);
@@ -36,11 +42,11 @@ namespace Heroes.Game
             City.Add("Gryphonshatchery", new Gryphonshatchery(this));
             City.Add("Knightbarrack", new Knightbarrack(this));
         }
-        public void Fight(Player player2 , string type)// typ zwraca stworka jaki bedzie atakowany
+        public void Fight(Player player2, string type)// typ zwraca stworka jaki bedzie atakowany
         {
 
 
-            int maxIni=FindMaxInitiative(player2);
+            int maxIni = FindMaxInitiative(player2);
             if (maxIni == 0)
             {
                 ResetInitiative(player2);
@@ -49,7 +55,7 @@ namespace Heroes.Game
 
             for (int a = 0; a < 4; a++)// znalezienie stworka
             {
-                if (playerArmy.Container[a].Initiative == maxIni && playerArmy.Container[a].Population!=0 )
+                if (playerArmy.Container[a].Initiative == maxIni && playerArmy.Container[a].Population != 0)
                 {
                     double damage = playerArmy.Container[a].Attack;// * 0.2
                     playerArmy.Container[a].Initiative = -playerArmy.Container[a].Initiative; //ustawienie ini na wartosc ujemna ( jednostka juz zatakowala)
@@ -57,19 +63,19 @@ namespace Heroes.Game
 
                     switch (type)
                     {
-                        case "A":
-                             howMuch = damage / player2.playerArmy.Archers.Health;
+                        case "Archer":
+                            howMuch = damage / player2.playerArmy.Archers.Health;
                             player2.playerArmy.Archers.Kill(howMuch);
                             break;
-                        case "K":
-                             howMuch = damage / player2.playerArmy.Knights.Health;
+                        case "Knight":
+                            howMuch = damage / player2.playerArmy.Knights.Health;
                             player2.playerArmy.Knights.Kill(howMuch);
                             break;
-                        case "D":
+                        case "Dragon":
                             howMuch = damage / player2.playerArmy.Dragons.Health;
                             player2.playerArmy.Dragons.Kill(howMuch);
                             break;
-                        case "G":
+                        case "Gryphon":
                             howMuch = damage / player2.playerArmy.Gryphons.Health;
                             player2.playerArmy.Gryphons.Kill(howMuch);
                             break;
@@ -79,7 +85,7 @@ namespace Heroes.Game
                     }
 
                 }
-                else if(player2.playerArmy.Container[a].Initiative == maxIni && player2.playerArmy.Container[a].Population != 0 )
+                else if (player2.playerArmy.Container[a].Initiative == maxIni && player2.playerArmy.Container[a].Population != 0)
                 {
                     double damage = player2.playerArmy.Container[a].Attack;
                     double howMuch;
@@ -87,21 +93,21 @@ namespace Heroes.Game
 
                     switch (type)
                     {
-                        case "A":
+                        case "Archer":
                             howMuch = damage / playerArmy.Archers.Health;
-                          playerArmy.Archers.Kill(howMuch);
+                            playerArmy.Archers.Kill(howMuch);
                             break;
-                        case "K":
+                        case "Knight":
                             howMuch = damage / playerArmy.Knights.Health;
-                           playerArmy.Knights.Kill(howMuch);
+                            playerArmy.Knights.Kill(howMuch);
                             break;
-                        case "D":
-                            howMuch = damage /playerArmy.Dragons.Health;
-                           playerArmy.Dragons.Kill(howMuch);
+                        case "Dragon":
+                            howMuch = damage / playerArmy.Dragons.Health;
+                            playerArmy.Dragons.Kill(howMuch);
                             break;
-                        case "G":
+                        case "Gryphon":
                             howMuch = damage / playerArmy.Gryphons.Health;
-                           playerArmy.Gryphons.Kill(howMuch);
+                            playerArmy.Gryphons.Kill(howMuch);
                             break;
                         default:
                             Console.WriteLine("Default case");
@@ -112,27 +118,24 @@ namespace Heroes.Game
 
             }
 
-
-          
         }
 
         public int FindMaxInitiative(Player player2)
         {
             int maxiniplayer1 = 0;
             int maxiniplayer2 = 0;
-            Creature playerWitchMaxIni1=null;
-            Creature playerWitchMaxIni2=null;
+            Creature playerWitchMaxIni1 = null;
+            Creature playerWitchMaxIni2 = null;
             for (int a = 0; a < 4; a++)
             {
                 this.playerArmy.Container[a].IsFighting = "orange";
-                player2.playerArmy.Container[a].IsFighting = "blue";
             }
 
-                for (int a = 0; a < 4; a++)// znalezienie max ini
+            for (int a = 0; a < 4; a++)// znalezienie max ini
             {
                 if (playerArmy.Container[a].Population > 0)
                 {
-                    if(maxiniplayer1 < PlayerArmy.Container[a].Initiative)
+                    if (maxiniplayer1 < PlayerArmy.Container[a].Initiative)
                     {
                         playerWitchMaxIni1 = this.playerArmy.Container[a];
                         maxiniplayer1 = playerArmy.Container[a].Initiative;
@@ -153,9 +156,11 @@ namespace Heroes.Game
                 if (playerWitchMaxIni1 != null)
                 {
                     playerWitchMaxIni1.IsFighting = "red";
+                    this.IsMyTurn = true;
+                    player2.IsMyTurn = false;
                 }
-           
-               
+
+
                 return maxiniplayer1;
             }
             else
@@ -163,10 +168,12 @@ namespace Heroes.Game
                 if (playerWitchMaxIni2 != null)
                 {
                     playerWitchMaxIni2.IsFighting = "red";
+                    player2.IsMyTurn = true;
+                    this.IsMyTurn = false;
                 }
                 return maxiniplayer2;
             }
-            
+
 
         }
 
