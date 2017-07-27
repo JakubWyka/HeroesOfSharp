@@ -30,56 +30,17 @@ namespace Heroes.Controllers
 
 
         }
-        //zmienic na 1 funkcje
+        
 
-        public IActionResult AttackArcher()
+        [HttpPost]
+        public IActionResult Attack(string type) //typ okresla stworka jaki zostal zatakowany
         {
-
             var players = PlayersList();
-            StartFight(players, "A");
-            ViewData["Message"] = "archer";
+            StartFight(players, type);
+            ViewData["Message"] = type;
             return View(players);
-
-
         }
-
-
-        public IActionResult AttackKnight()
-        {
-
-
-            var players = PlayersList();
-            StartFight(players, "K");
-            ViewData["Message"] = "knight";
-            return View(players);
-
-
-        }
-        public IActionResult AttackGryphon()
-        {
-
-            var players = PlayersList();
-            StartFight(players, "G");
-            ViewData["Message"] = "gryph";
-            return View(players);
-
-
-        }
-
-
-        public IActionResult AttackDragon()
-        {
-
-
-            var players = PlayersList();
-            StartFight(players, "D");
-            ViewData["Message"] = "dragon";
-            return View(players);
-
-
-        }
-
-
+      
         [NonAction]
         public List<Game.Player> PlayersList()
         {

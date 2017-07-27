@@ -9,13 +9,24 @@
 @foreach (var item in Model)
 {
 
-    <a asp-area="" asp-controller="Home" asp-action="AttackArcher"><img src="~/images/Archer.png" alt="Mountain View" style="width:200px;height:250px;"></a>
-    <a asp-area="" asp-controller="Home" asp-action="AttackKnight"><img src="~/images/Knight.png" alt="Mountain View" style="width:200px;height:250px;"></a>
-    <a asp-area="" asp-controller="Home" asp-action="AttackDragon"><img src="~/images/Dragon.png" alt="Mountain View" style="width:200px;height:250px;"></a>
-    <a asp-area="" asp-controller="Home" asp-action="AttackGryphon"><img src="~/images/Gryphon.png"alt="Mountain View" style="width:200px;height:250px;"></a>
+
+    @using (Html.BeginForm("Attack", "Home", FormMethod.Post))
+    {
+
+        <button type="submit" class="btn btn-default" name="type" value="A"><img src="~/images/Archer.png" style="width:200px;height:250px;" /></button>
+        <button type="submit" class="btn btn-default" name="type" value="K"><img src="~/images/Knight.png" style="width:200px;height:250px;" /></button>
+        <button type="submit" class="btn btn-default" name="type" value="D"><img src="~/images/Dragon.png" style="width:200px;height:250px;" /></button>
+        <button type="submit" class="btn btn-default" name="type" value="G"><img src="~/images/Gryphon.png" style="width:200px;height:250px;" /></button>
+        
+
+    }
+
+
+
+
     <br />
 
-    <table style="font-size:20px; padding-right:6px;">
+    <table style="font-size:30px; padding-right:6px;">
         <tr>
             <td>
                 <b>  archers :     @Html.DisplayFor(modelItem => item.PlayerArmy.Archers.Population)  ini @Html.DisplayFor(modelItem => item.PlayerArmy.Archers.Initiative) </b>
