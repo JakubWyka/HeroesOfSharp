@@ -13,7 +13,7 @@ Co udało nam się zrealizować:
   - widok bohatera, w tym miejscu można przejrzeć posiadaną armię
   - widok graczy, w tym miejscu wyświetlamy listę wszytkich istniejących graczy, obcego gracza można wyzwać do walki
   - widok walki i walka, walka jest turowa, każdy gracz ma swój widok, zaatakowny gracz jest automatycznie przekierowywany do widoku walki,
-  widoku walki nie można opuścić dopóki tra; warunkiem zakończenia walki jest zabicie wszystkich wrogich jednostek;
+  widoku walki nie można opuścić dopóki trwa; warunkiem zakończenia walki jest zabicie wszystkich wrogich jednostek;
   w momencie, gdy gracz kończy turę, przyciski jego formularza zostają zablokowane, zostaną odblokowane, gdy drugi gracz skończy turę.
   - wykorzystanie klas abstrakcyjnych, stworzyliśmy abstrakcje takie jak budynek, czy 'stworek', po których dziedziczą obiekty w naszej grze.
   - używamy TempData, żeby przechowywać dane o graczu po stronie serwera
