@@ -1,0 +1,21 @@
+Youtube: https://youtu.be/lzMq1qnmp_4
+
+Technologie: C#, ASP.NET; dodatkowo użyte: html, css, javascript
+
+Jaki był cel: Stworzenie prostej gry strategicznej w przeglądarce.
+
+Co udało nam się zrealizować:
+  - tworzenie nowego bohatera, do raz utworzonego bohatera można wrócić poprzez zalogowanie się tymi samymi danymi
+  - widok miasta, w którym korzystamy ze stworzonych klas budynków i klasy gracza to prezentowania listy, tego co gracz moży wybudować,
+  co może rozbudowac oraz jakie jednostki może zwerbować do swojej armii.
+  - na wszystkich stronach wyświetlają się aktualne zasoby gracza, zasoby są odświeżane co kilkanaście sekund poprzez wykorzystania AJAX
+  i cyklicznego odpytywania serwera, żeby sprawdził, z których budynków możliwa jest produkcja i jej wykonanie
+  - widok bohatera, w tym miejscu można przejrzeć posiadaną armię
+  - widok graczy, w tym miejscu wyświetlamy listę wszytkich istniejących graczy, obcego gracza można wyzwać do walki
+  - widok walki i walka, walka jest turowa, każdy gracz ma swój widok, zaatakowny gracz jest automatycznie przekierowywany do widoku walki,
+  widoku walki nie można opuścić dopóki tra; warunkiem zakończenia walki jest zabicie wszystkich wrogich jednostek;
+  w momencie, gdy gracz kończy turę, przyciski jego formularza zostają zablokowane, zostaną odblokowane, gdy drugi gracz skończy turę.
+  - wykorzystanie klas abstrakcyjnych, stworzyliśmy abstrakcje takie jak budynek, czy 'stworek', po których dziedziczą obiekty w naszej grze.
+  - używamy TempData, żeby przechowywać dane o graczu po stronie serwera
+  - widoki posiadają komunikaty zeleżne od stanu gry na serwerze, do ich wyświetlania używamy składni razor.
+  
